@@ -1,4 +1,5 @@
 """
+
 Simple demonstration of how to implement Server-sent events (SSE) in Python
 using Bottle micro web-framework.
  
