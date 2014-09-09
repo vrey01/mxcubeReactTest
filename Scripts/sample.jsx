@@ -20,9 +20,14 @@ var Sample = React.createClass({
        var fields = [];
 
        fieldno = 0;
+       hiddenfields = ['sampleId', 'sampleName'];
+
        for (field in this.props.sample) { 
+           if (hiddenfields.indexOf(field) >= 0){
+                continue;
+           }
            var value = this.props.sample[field];
-           fields.push( <EditableField key={fieldno} name={field} value={value} /> );
+           fields.push( <EditableField key={fieldno} sampleid={this.props.sample.sampleId} name={field} value={value} /> );
            fieldno += 1;
        }
 
@@ -51,6 +56,6 @@ var EditableField = React.createClass({
    }, 
 
    render: function() {
-       return <p>{this.props.name}: <a href="#" ref="editable" name={this.props.name} data-type="text" data-title="Edit value">{this.props.value}</a></p>
+       return <p>{this.props.name}: <a href="#" ref="editable" data-name={this.props.name} data-pk={this.props.sampleid} data-url="/sample_field_update" data-type="text" data-title="Edit value">{this.props.value}</a></p>
    } 
 })
