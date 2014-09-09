@@ -1,19 +1,31 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<script src="/Scripts/jquery-1.11.1.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://fb.me/react-with-addons-0.11.1.js"></script>
 <script src="http://fb.me/JSXTransformer-0.11.1.js"></script>
 <script type="text/jsx" src="/Scripts/sample.jsx"></script>
 
+<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+
 <script type="text/jsx">
+
 /** @jsx React.DOM */
+
+function createSampleList() {
+   $.get("samples", {}, function(data) {
+        samples = data.loaded_sample;
+        var sample_list = SampleList({ samples: samples}); 
+        React.renderComponent(sample_list, $('#samples_list')[0] );
+   }, "json");
+}
+
 $( document ).ready(function() {
-
-  React.renderComponent(<Sample/>, $('#samples_list')[0] );
-
+   $.fn.editable.defaults.mode = 'inline';
+   createSampleList();
 });
 
 </script>
@@ -21,7 +33,13 @@ $( document ).ready(function() {
 
 <body>
 
-<div id="samples_list"></div>
+<div class="container-fluid">
+  <div class="row-fluid">
+     <div class="col-md-3" id="samples_list">
+    </div>
+  </div>
+</div>
+
 
 </body>
 </html>
