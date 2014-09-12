@@ -1,5 +1,19 @@
 /** @jsx React.DOM */
 
+var Search = React.createClass({
+     render: function() {
+         return <div className="search input-group" role="search">
+                  <input type="search" className="form-control" placeholder="Search"/>
+                  <span className="input-group-btn">
+                    <button className="btn btn-default" type="button">
+                      <span className="glyphicon glyphicon-search"></span>
+                      <span className="sr-only">Search</span>
+                    </button>
+                  </span>
+                </div>
+    }
+});
+
 var SampleList = React.createClass({
      render: function() {
         id = 0;
@@ -7,14 +21,18 @@ var SampleList = React.createClass({
              id += 1;
              return <Sample sample={sample} key={id} />;
          }.bind(this));
-        return <div className="panel-group">{samples}</div>
+        return <div>
+                 <Search/>
+                 <button type="button" className="btn btn-primary">
+                   <span className="glyphicon glyphicon-refresh"></span> Check sample changer
+                 </button>
+                 <div className="panel-group">{samples}</div>
+               </div>
      },
 });
 
 var Sample = React.createClass({
-     
      render: function() {
-
        var idref = "#"+this.props.key;
 
        var fields = [];

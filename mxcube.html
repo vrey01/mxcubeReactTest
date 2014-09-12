@@ -1,15 +1,15 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="http://fb.me/react-with-addons-0.11.1.js"></script>
-<script src="http://fb.me/JSXTransformer-0.11.1.js"></script>
-<script type="text/jsx" src="/Scripts/sample.jsx"></script>
-
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fuelux/2.6.1/all.min.js"></script>
+<script src="//fb.me/react-with-addons-0.11.1.js"></script>
+<script src="//fb.me/JSXTransformer-0.11.1.js"></script>
 <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<script type="text/jsx" src="/Scripts/sample.jsx"></script>
 
 <script type="text/jsx">
 
@@ -75,11 +75,15 @@ $( document ).ready(function() {
 
 <div class="container-fluid">
   <div class="row-fluid">
-     <div class="col-md-3" id="samples_list">
-    </div>
+     <div class="col-md-3" id="samples_list"></div>
+     <div class="col-md-3" id="queue"></div>
+     <div class="col-md-6">
+       <div id="data_path"></div>
+       <canvas id="sample_video" width="659" height="493" style="{background-color: #eeeeee}"></canvas>
+       <div id="dc_method"></div>
+     </div>
   </div>
 </div>
-
 
 </body>
 </html>
