@@ -13,6 +13,7 @@
 <script src="http://backbonejs.org/backbone-min.js"></script>
 <script type="text/jsx" src="/scripts/sample.jsx"></script>
 <script type="text/jsx" src="/scripts/queue.jsx"></script>
+<script type="text/jsx" src="/scripts/dc_methods.jsx"></script>
 
 <style type="text/css">
 .top5 { margin-top:5px; }
@@ -44,10 +45,6 @@ function getSessionInfo() {
    }); //, "json");
 }
 
-function createQueue() {
-  React.renderComponent(<Queue/>, $("#queue")[0]);
-}
-
 function logout() {
    window.location.replace("/logout");
 }
@@ -58,7 +55,9 @@ $( document ).ready(function() {
    $.fn.editable.defaults.mode = 'popup';
    getSessionInfo();
    createSampleList();
-   createQueue();
+   
+   React.renderComponent(<Queue/>, $("#queue")[0]);
+   React.renderComponent(<DCMethods/>, $("#dc_method")[0]);
 });
 
 </script>
@@ -94,11 +93,11 @@ $( document ).ready(function() {
 <div class="container-fluid">
   <div class="row-fluid">
      <div class="col-md-3" id="samples_list"></div>
-     <div class="col-md-3" id="queue"></div>
      <div class="col-md-6">
-       <canvas id="sample_video" width="659" height="493" style="background-color: #bbbbbb"></canvas>
+       <canvas id="sample_video" class="text-center" width="659" height="493" style="background-color: #bbbbbb"></canvas>
        <div id="dc_method"></div>
      </div>
+     <div class="col-md-3" id="queue"></div>
   </div>
 </div>
 
