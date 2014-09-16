@@ -58,9 +58,9 @@ def guiMain(guiname):
    motor_page = open("%s.html" % guiname).read() 
    return motor_page
 
-@route('/Scripts/<script>')
+@route('/scripts/<script>')
 def getJquery(script):
-   motor_page = open("Scripts/%s" % script).read()
+   motor_page = open("scripts/%s" % script).read()
    return motor_page
 
 @post('/move')
