@@ -12,6 +12,7 @@
 <script src="http://underscorejs.org/underscore-min.js"></script>
 <script src="http://backbonejs.org/backbone-min.js"></script>
 <script type="text/jsx" src="/scripts/sample.jsx"></script>
+<script type="text/jsx" src="/scripts/queue.jsx"></script>
 
 <style type="text/css">
 .top5 { margin-top:5px; }
@@ -28,8 +29,7 @@
 
 function createSampleList() {
    $.get("samples", {}, function(data) {
-        samples = data.loaded_sample;
-        var sample_list = SampleList({ samples: samples}); 
+        var sample_list = SampleList({ samples: data.loaded_sample }); 
         React.renderComponent(sample_list, $('#samples_list')[0] );
    }, "json");
 }
@@ -41,7 +41,11 @@ function getSessionInfo() {
       } else {
           $("#loggedin").html(data.proposal);
       }
-   }, "json");
+   }); //, "json");
+}
+
+function createQueue() {
+  React.renderComponent(<Queue/>, $("#queue")[0]);
 }
 
 function logout() {
@@ -54,6 +58,7 @@ $( document ).ready(function() {
    $.fn.editable.defaults.mode = 'popup';
    getSessionInfo();
    createSampleList();
+   createQueue();
 });
 
 </script>
