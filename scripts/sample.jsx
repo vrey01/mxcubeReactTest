@@ -42,7 +42,7 @@ var SampleList = React.createClass({
 
 var Sample = React.createClass({
      add_mount_task: function() {
-       window.app_dispatcher.trigger("queue:new_item", "Mount "+this.props.sample.sampleName);  
+       window.app_dispatcher.trigger("queue:new_item", { "kind":"sample", "text": "Mount "+this.props.sample.sampleName });  
      },
 
      render: function() {

@@ -4,8 +4,12 @@ var Queue = React.createClass({
      getDefaultProps: function() {
        return { "queue_items": [] }
      }, 
-     _add_queue_item: function(item_text) {
-       this.props.queue_items.push(item_text);
+     _add_queue_item: function(item) { //_text) {
+       if (item["kind"]=="sample") {
+         this.props.queue_items.push(item["text"]);
+       } else if (item["kind"]=="dc") {
+         this.props.queue_items.push(item["text"]);
+       }
        this.forceUpdate();
      },
      componentWillMount: function() {
