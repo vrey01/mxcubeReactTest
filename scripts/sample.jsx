@@ -42,11 +42,11 @@ var SampleList = React.createClass({
 
 var Sample = React.createClass({
      add_mount_task: function() {
-       window.app_dispatcher.trigger("queue:new_item", { "kind":"sample", "text": "Mount "+this.props.sample.sampleName });  
+       window.app_dispatcher.trigger("queue:new_item", { "kind":"sample", "text": "Mount "+this.props.sample.sampleName, fields:{} });  
      },
 
      render: function() {
-       var idref = "#"+this.props.key;
+       var idref = "sample"+this.props.key;
        var fields = [];
        var fieldno = 0;
        var hiddenfields = ['sampleId', 'sampleName' ];
@@ -74,7 +74,7 @@ var Sample = React.createClass({
                   </b>
                   { mount_button }
                </div>
-               <div id={this.props.key} className="panel-collapse collapse out">
+               <div id={idref} className="panel-collapse collapse out">
                  <div className="panel-body">
                    {fields}
                  </div>

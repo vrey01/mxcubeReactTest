@@ -2,12 +2,7 @@
 
 var DCMethods = React.createClass({
      getDefaultProps: function() {
-         this.parameters = "";
          return { disabled: true };
-     },
-     show_discrete_parameters: function() {
-         this.parameters = <DiscreteParameters/>
-         this.forceUpdate();
      },
      _add_queue_item: function(item) { 
          if (this.props.disabled) {
@@ -21,20 +16,32 @@ var DCMethods = React.createClass({
      componentWillUnMount: function() {
        window.app_dispatcher.off("queue:new_item", this._add_queue_item);
      },
+     add_discrete: function() {
+       window.app_dispatcher.trigger("queue:new_item", { kind: "dc", "text": "discrete" });
+     },
+     add_characterisation: function() {
+     },
+     add_egyscan: function() {
+     },
      render: function() {
-         var parameters = "";
-
-         return <div>
-                  <span className="label label-default">Data collection methods</span>
-                  <br></br>
-                  <div className="btn-group top5">
-                      <button type="button" className="btn btn-default" onClick={this.show_discrete_parameters} disabled={this.props.disabled}>Discrete</button>
-                      <button type="button" className="btn btn-default" disabled={this.props.disabled}>Characterisation</button>
-                      <button type="button" className="btn btn-default" disabled={this.props.disabled}>Energy scan</button>
+         return <div className="panel panel-default">
+                  <div className="panel-heading">
+                    <h4 className="panel-title">Data collection methods</h4>
+                  </div>
+                  <div className="panel-body">
+                    <div className="btn-group">
+                      <button type="button" className="btn btn-default" onClick={this.add_discrete} disabled={this.props.disabled}>
+                        <span className="glyphicon glyphicon-plus"></span> Discrete
+                      </button>
+                      <button type="button" className="btn btn-default" onClick={this.add_characterisation} disabled={this.props.disabled}>
+                        <span className="glyphicon glyphicon-plus"></span> Characterisation 
+                      </button>
+                      <button type="button" className="btn btn-default" onClick={this.add_egyscan} disabled={this.props.disabled}>
+                        <span className="glyphicon glyphicon-plus"></span> Energy scan
+                      </button>
                       <div className="btn-group">
                         <button type="button" disabled={this.props.disabled} className="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                         Advanced&nbsp; 
-                         <span className="caret"></span>
+                         <span className="glyphicon glyphicon-plus"></span> Advanced <span className="caret"></span>
                        </button>
                        <ul className="dropdown-menu" role="menu">
                           <li><a href="#">Mesh</a></li>
@@ -42,9 +49,7 @@ var DCMethods = React.createClass({
                           <li><a href="#">Enhanced characterisation</a></li>
                       </ul>
                     </div>
-                 </div>
-                 <div className="text-left top7">
-                   {this.parameters}
+                   </div>
                  </div>
                </div>
     }
