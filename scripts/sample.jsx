@@ -47,6 +47,7 @@ var Sample = React.createClass({
 
      render: function() {
        var idref = "sample"+this.props.key;
+       var idhref = "#"+idref;
        var fields = [];
        var fieldno = 0;
        var hiddenfields = ['sampleId', 'sampleName' ];
@@ -68,7 +69,7 @@ var Sample = React.createClass({
        return <div className="panel panel-default">
                 <div className="panel-heading clearfix">
                   <b className="panel-title pull-left">
-                    <a data-toggle="collapse" data-parent="#accordion" href={idref}>
+                    <a data-toggle="collapse" data-parent="#accordion" href={idhref}>
                      {this.props.sample.sampleName}
                     </a>
                   </b>

@@ -1,5 +1,10 @@
 /** @jsx React.DOM */
 
+var discrete_params = { osc_range: { label: "Oscillation range", default_value: 0.1 },
+                        osc_start: { label: "Oscillation start", default_value: 0 },
+                        exp_time: { label: "Exposure time", default_value: 0.02 },
+                        n_images: { label: "Number of images", default_value: 1 } } 
+
 var DCMethods = React.createClass({
      getDefaultProps: function() {
          return { disabled: true };
@@ -17,7 +22,11 @@ var DCMethods = React.createClass({
        window.app_dispatcher.off("queue:new_item", this._add_queue_item);
      },
      add_discrete: function() {
-       window.app_dispatcher.trigger("queue:new_item", { kind: "dc", "text": "discrete" });
+       window.app_dispatcher.trigger("queue:new_item", 
+         { kind: "dc", 
+           text: "Discrete",
+           fields: discrete_params
+         });
      },
      add_characterisation: function() {
      },
@@ -26,7 +35,7 @@ var DCMethods = React.createClass({
      render: function() {
          return <div className="panel panel-default">
                   <div className="panel-heading">
-                    <h4 className="panel-title">Data collection methods</h4>
+                    <b className="panel-title pull-left">Data collection methods</b>
                   </div>
                   <div className="panel-body">
                     <div className="btn-group">
